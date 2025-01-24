@@ -36,13 +36,13 @@ export const getPropsFromPath = (path: string) => {
     return getProps(getLangFromPath(path));
 };
 
-export const getProps = (locale: "es" | "en") => {
+export const getProps = (locale: "es" | "en" | "ru") => {
     return {
         t: localedT(locale),
         lang: locale,
     };
 };
 
-export const getLangedRoute = (locale: "es" | "en", route: string) => {
+export const getLangedRoute = (locale: "es" | "en" | "ru", route: string) => {
     return `/${locale === DEFAULT_LANG ? "." : locale}${route}`;
 };

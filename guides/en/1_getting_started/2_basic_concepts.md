@@ -1,26 +1,26 @@
 ---
 title: Basic Concepts
 description:
-    Learn about the basics of KAPLAY, the HTML5 Game Engine for JavaScript and
+    Узнайте об основах KAPLAY, игрового HTML5 движка для JavaScript и
     TypeScript.
 url: starting
 image: "./assets/theater.png"
 ---
 
-# Basic Concepts
+# Основные концепции
 
-To get started with KAPLAY, you must know 4 main concepts: **Scenes**, **Game
-Objects**, **Components** and **Events**
+Чтобы приступить к KAPLAY, вы должны знать 4 основных концепции: **Scenes**, **Game
+Objects**, **Components** и **Events**
 
-You can think of your game as a theater: scenes are the acts, game objects are
-the actors and components are the script the actors follow.
+Можете представлять свою игру как театр: сцены - это действия, game objects это актеры
+а компоненты это сценарии которым следуют актеры.
 
 ![alt text](./assets/theater.png)
 
-## Initialization
+## Инициализация
 
-All KAPLAY games start with the `kaplay()` function. This function makes
-available all methods and functions that you will use to create your game.
+Все игры KAPLAY стартуют функцией `kaplay()`. Эта функция делает доступными
+все методы и функции которые вы будете использовать для создания своей игры.
 
 ```js
 kaplay();
@@ -28,46 +28,46 @@ kaplay();
 
 ## Game Objects
 
-The **game object** is the basic unit of KAPLAY. The player, a butterfly, a
-tree, or even a piece of text are all game objects. they are our actors, they
-move, interact, and make the game interesting.
+ **game object** это базовый юнит KAPLAY. Игрок, бабочка, дерево, или даже
+ фрагмент текста это все game objects. Они наши актеры, они движутся, 
+ взаимодействуют, и делают игру интересной.
 
-You can create objects with the `add()` function, which takes an array of
-**components** that define the object's behavior (your actor's "script").
+Создавать объекты можно функцией `add()`, которая принимает массив компонентов
+**components** которые определяют поведение объекта («Сценарий вашего актера»).
 
 ```js
 kaplay(); // remember to initialize the game
 
 const obj = add([
-    // this is a component that draws a rectangle
+    // это компонент который рисует многоугольник
     rect(32, 32),
 ]);
 ```
 
-## Components
+## Компоненты
 
-Components are the building blocks of game objects. They define the behavior of
-the object, like how it moves, looks, and interacts with other objects.
+Компоненты это строительные блоки game objects. Они определяют поведение
+объекта, как тот движется, выглядит, и взаимодействует с другими объектами.
 
-In KAPLAY, there are many built-in components that you can use to create your
-game objects. For example:
+В KAPLAY, есть множество готовых компонентов которые вы можете использовать
+для создания ваших game objects. Например:
 
-- `pos(x, y)` sets the position of the object.
-- `rect(width, height)` draws a rectangle.
-- `color(r, g, b)` sets the color of the object.
+- `pos(x, y)` задает позицию объекта.
+- `rect(width, height)` рисует прямоугольник.
+- `color(r, g, b)` задает цвет объекта.
 
-We will go in deep on components in the [**Components**](/guides/components)
-guide.
+Мы погрузимся в компоненты глубже в руководстве [**Components**](/guides/components)
 
-## Scenes
+## Сцены
 
-Scenes are what wrap the game objects -- the acts of the stageplay. Typical
-scenes might include a main menu, the game itself, and a game over screen.
+Сцены - это то, что обертывает игровые объекты -- акты сцены. 
+Типичная сцена может включать главное меню, саму игру, 
+и экран game.
 
-In KAPLAY, you create scenes with the `scene()` function:
+В KAPLAY, вы создаете сцены функцией `scene()`:
 
 ```js
-kaplay(); // remember to initialize the game
+kaplay(); // не забываем инициализировать игру
 
 scene("game", () => {
     const rect = add([
@@ -77,19 +77,19 @@ scene("game", () => {
 });
 ```
 
-## Events
+## События
 
-Events are specific moments of your game execution that you can handle and
-execute code when that happens.
+События - это конкретные моменты выполнения вашей игры, с которыми вы можете справиться, и
+выполнить код, когда это произойдет.
 
 ```js
 onUpdate(() => {
-    // this code is executed every frame (normally 60 times per second)
+    // Этот код выполняется каждый кадр (обычно 60 раз в секунду)
 });
 
 onKeyPress("space", () => {
-    // this code is executed only when the space key is pressed
+    // Этот код выполняется только тогда, когда нажата клавиша пробел
 });
 ```
 
-We go in deep with events on the [**Events guide**](/guides/events) guide.
+Мы углубимся в события в руководстве [**Events guide**](/guides/events).

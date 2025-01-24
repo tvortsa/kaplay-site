@@ -10,8 +10,8 @@ export const booksInfo: Record<
     }
 > = {
     how_to_be_a_bean_wizard: {
-        title: "How to be a Bean Wizard",
-        description: "A guide to becoming a bean wizard.",
+        title: "как стать бобовым волшебником",
+        description: "Руководство по становлению мастером бобов.",
         potrait: assets.how_to_be_a_bean_wizard.outlined!,
         url: "/books/how_to_be_a_bean_wizard/introduction",
     },

@@ -1,83 +1,82 @@
 ---
-title: Creating your first game
-description: Learn the basics of KAPLAY and make a simple game.
+title: Создание вашей первой игры
+description: Узнайте основы Kaplay и сделайте простую игру.
 url: creating_your_first_game
 ---
 
-# Creating your first game
+# Создание вашей первой игры
 
-This is an intro tutorial that will cover the basic concepts and make a very
-simple [Chrome Dino](https://en.wikipedia.org/wiki/Dinosaur_Game) - ish game.
-For setting up KAPLAY development, see the
-[Installation Guide](/guides/install).
+Это вступительный учебник, который будет охватывать основные концепции и сделать очень
+простую [Chrome Dino](https://en.wikipedia.org/wiki/Dinosaur_Game) -подобную игру.
+Для настройки разработки Kaplay см.
+[Руководство по установке](/guides/install).
 
 ![game](intro/game.png)
 
-Let's start by initializing the context with the `kaplay()` function.
+Начнем с инициализации контекста функцией `kaplay()`.
 
 ```js
 kaplay();
 ```
 
-This should give you a blank canvas with a nice checkerboard pattern like this
+Это должно дать вам чистый холст с таким красивым рисунком шахматной доски
 
 ![empty](intro/empty.png)
 
-Then let's add some stuff to screen, like an image. Copy this piece of code to
-your editor and see what happens when you run the game.
+Теперь давайте добавим кое-что на экран, как изображение. Скопируйте этот кусок кода
+в ваш редактор и посмотрите, что произойдет, когда вы запустите игру.
 
 ```js
-// load a sprite "bean" from an image
+// загрузка спрайта "bean" из изображения
 loadSprite("bean", "sprites/bean.png");
 
-// add something to screen
+// Добавить что -нибудь на экран
 add([sprite("bean"), pos(80, 40)]);
 ```
 
-Introducing Frog the "Bean"! A happy frog that enjoys life. You'll see Bean a
-lot around here.
+Представляем лягушку "Bean"!Счастливая лягушка, которая наслаждается жизнью.
+Вы увидите много Bean`ов здесь.
 
 ![isbean](intro/bean.png)
 
-Before explaining what this code does, let's try adding some more stuff to it
-and see what happens:
+Прежде чем объяснить, что делает этот код, давайте попробуем добавить в него еще немного вещей
+и посмотрите, что произойдет:
 
 ```js
-// add something to screen
+// Добавить что -нибудь на экран
 add([sprite("bean"), pos(80, 40), scale(3), rotate(30), color(0, 0, 255)]);
 ```
 
-Feel free to tweak some parameters and see how it affects what happens on
-screen.
+Не стесняйтесь настраивать некоторые параметры и посмотреть, как это влияет на то, что происходит на
+экране.
 
-In KAPLAY, each game object is composed from multiple components. Each component
-will give the game obj certain functionality.
+В Kaplay каждый игровой объект состоит из нескольких компонентов. Каждый компонент
+придает игровому объекту определенную функциональность.
 
-> A game object is basically any character in the game, like the player
-> character, a bullet, a rock, a cloud
+> game object это сонова любого персонажа в игре, такого как персонаж игрока,
+> пуля, скала, облако
 
-For example, some component might decide what's the shape, some components might
-decide if it should subject to gravity, some components might decide what color
-it is, some component might decide how long it can live.
+Например, один компонент может определять форму, другой - должен ли объект испытывать гравитацию,
+третий компонент может определять цвет, четвертый - продолжительность жизни и т.д.
 
 ![comps](intro/comps.png)
 
-If you're having trouble understanding, consider this Human Bean:
+Если у вас возникли проблемы с пониманием, подумайте об этом Human Bean:
 
 ![humanbean](intro/humanbean.png)
 
-Human are also composed from a list of components, each component provides
-different functionalities, which is exactly what component means in KAPLAY.
-`add()` is the function you use to assemble all the components into a game
-object in KAPLAY:
+Human также состоит из списка компонентов, каждый компонент предоставляет
+различную функциональность, это именно то что представляет собой коспонент в KAPLAY.
+`add()` это функция, которую вы используете для сборки всех компонентов в game
+object в KAPLAY:
 
 ![assemble](intro/assemble.png)
 
-It's actually kinda like playing with lego pieces! Let's keep this in mind and
-start making the actual player character in our game:
+Это как играть с кусочками lego! Давайте запомним об этом и
+начнем делать фактического персонажа игрока в нашей игре:
 
 ```js
-// putting together our player character
+// соберем  нашего персонажа игрока
 const bean = add([sprite("bean"), pos(80, 40), area(), body()]);
 
 // .jump() when "space" key is pressed
@@ -86,28 +85,28 @@ onKeyPress("space", () => {
 });
 ```
 
-Let's see what components we're using:
+Посмотрим, какие компоненты мы используем:
 
-- `sprite()` makes it render as a sprite, with the `"bean"` sprite we just
-  loaded with `loadSprite()`
-- `pos()` gives it a position on screen, at X: 80 Y: 40
-- `area()` gives it a collider area, so we can check for collisions with other
-  characters later on
-- `body()` gives it a physical body, making it fall due to gravity and ability
-  to jump,
+- `sprite()` рендерится как спрайт, со спрайтом `"bean"` мы просто загружаем
+  посредством `loadSprite()`
+- `pos()` задает position на экране, в X: 80 Y: 40
+- `area()` дает ему область коллайдера, поэтому мы можем проверить на столкновения 
+    с другими персонажами
+- `body()` дает физическое тело, заставляя его падать из -за гравитации и способность
+    прыгать,
 
-We're also testing out our player character with a little interaction here.
-`onKeyPress()` registers an event that runs every time user presses a certain
-key. In this case, we're calling the `.jump()` method (which is provided by the
-`body()` component) when `"space"` key is pressed. Go ahead and slap that space
-key!
+Мы также проверяем нашего персонажа с небольшим взаимодействием здесь.
+`onKeyPress()` регистрирует событие, которое работает каждый раз, когда пользователь
+нажимает определенную клавишу. 
+В этом случае мы называем метод `.jump()` (предоставляемый компонентом `body()`)
+когда клавиша пробела `"space"` нажата. Go ahead and slap that space key!
 
-With the `body()` component, our Bean is going to keep falling into oblivion if
-we don't hit "space" key enough. Let's add a static platform for Bean to land
-on.
+Компонент `body()`, наш Bean продолжит падать в бездну если мы не нажмем
+клавишу пробела "space". Давайте добавим статическую платформу для Bean, 
+чтобы он мог приземлиться.
 
 ```js
-// add platform
+// добавляем платформу
 add([
     rect(width(), 48),
     pos(0, height() - 48),
@@ -118,33 +117,32 @@ add([
 ]);
 ```
 
-Woah! That looks like a lot, but it's actually really simple, let's look at each
-component
+Ооо! Это похоже на много, но на самом деле это действительно просто, давайте посмотрим на каждый
+компонент
 
-- `rect()` renders a rectangle. It accepts 2 arguments, the width and height,
-  which we give it the game width (returned by `width()`) and height of 48
-  pixels
-- `pos()` position. We give it a x: 0 and y: `height() - 48` so it sits right on
-  the bottom of the screen
-- `outline()` renders an outline of `4` pixels
-- `area()` adds a collider to it
-- `body({ isStatic: true })` the object won't move, and all non static objects
-  won't move past it
-- `color()` makes it render with an RGB color, we give it a R: 127 G: 200 B: 255
-  which is a blue-ish color
+- `rect()` рендерит прямоугольник. Принимает два аргумента, width и height,
+  мы даем ему ширину игры (возвращаемую по `width()`) и высоту 48 пикселей
+- `pos()` положение. Мы задаем x: 0 и y: `height() - 48` так что он находится прямо на
+    нижней границе экрана
+- `outline()` рендерит рамку в `4` пикселя
+- `area()` добавляет коллайдер
+- `body({ isStatic: true })` объект земли не движется, и все не статические объекты
+    не пройдут сквозь него
+- `color()` рендерит с цветом RGB, мы задаем его как R: 127 G: 200 B: 255 это голубой.
 
-Now, before run, we should define the gravity of our world:
+Осталось объявить гравитацию в нашем мире:
 
 ```js
 setGravity(1600);
 ```
 
-Pretty straightforward! Refresh the game and you should see our Bean is now
-safely landed on a static blue platform.
+Обновите игру, и вы должны увидеть как наш Bean сейчас
+безопасно приземлился на статической синей платформе.
 
 ![land](intro/land.png)
 
-Let's also make sure our Bean can only jump when isGrounded.
+Давайте также удостоверимся, что наш Bean может прыгнуть 
+только тогда, когда isGrounded.
 
 ```js
 onKeyPress("space", () => {
@@ -154,15 +152,14 @@ onKeyPress("space", () => {
 });
 ```
 
-`isGrounded()` is another function provided by `body()` component which checks
-if currently landed on a platform. Now our game is slightly more physically
-correct.
+`isGrounded()` это еще одна функция предоставляемая компонентом `body()` которая проверяет
+приземлён ли наш Bean на платформе. 
 
-Bean loves challenges. Let's start adding in obstacles to jump over! Time to
-build a game object from components again.
+Bean любит испытания. Давайте начнем добавлять препятствия, чтобы перепрыгнуть! 
+Создадим игровые объекты из компонентов снова.
 
 ```js
-// add tree
+// дерево
 add([
     rect(48, 64),
     area(),
@@ -174,31 +171,31 @@ add([
 ]);
 ```
 
-A lot of these we have already seen you should know what they do, but some new
-ones here:
+Многие из них, мы уже видели, вы должны знать, что они делают, но некоторые новые
+Один здесь:
 
-- `anchor()` defines the origin point of positioning. By default `pos()` defines
-  the top left point of the shape, here we change it to the bottom left point
-  because we want it to be just above the platform, so we give it Y position of
+- `anchor()` определяет точку позиционирования. По умолчанию `pos()` объявлен
+  в верхнем левом углу формы, мы изменим это на левый нижний угол поскольку
+  мы хотим чтобы дерево стояло на платформе, итак мы задаем Y position в
   `height() - 48`
-- `move()` makes it move towards a direction infinitely. In this case we move
-  towards the `LEFT` by `480` pixels per second
+- `move()` заставляет объект двигаться в направлении бесконечно. В этом случае мы двигаемся
+в `LEFT` на `480` пикселей в секунду.
 
 ![tree](intro/tree.png)
 
-Challenger appears! Try jumping over it.
+Появилось препятсвтие! Попробуйте перепрыгнуть его.
 
-Oh but it's.. not really fun! Or rather, there's no feedback to whether we
-managed to jump over the ramp. Let's add some feedback.
+О, но это ... не очень весело! Или, скорее, нет никаких отзывов о том, будь то
+удалось перепрыгнуть через препятствие или нет. Давайте добавим немного отзывов.
 
-To do this we'll need to check for collision between the two.
+Для этого нам нужно проверить столкновение между двумя объектами.
 
-First we'll need to give the tree a tag. Any game object can have any number of
-tags, they're kinda like components but much more light weight. We often use
-tags to quickly describe behaviors for a group of objects.
+Сначала нам нужно дать дереву метку.У любого игрового объекта может быть любое количество
+тегов, они вроде как компоненты, но гораздо более легкие.Мы часто используем теги, чтобы 
+быстро описать поведение для группы объектов.
 
 ```js
-// add tree
+// дерево
 add([
     rect(48, 64),
     area(),
@@ -207,12 +204,12 @@ add([
     anchor("botleft"),
     color(255, 180, 255),
     move(LEFT, 240),
-    "tree", // add a tag here
+    "tree", // тэг
 ]);
 ```
 
-To add a tag we simply put a string in the component array. Then we can check
-for collision between Bean and any object with tag "tree".
+Чтобы добавить тег, мы просто помещаем строку в массив компонентов.Тогда мы можем проверить
+столкновения между Bean и любым объектом с тегом «tree».
 
 ```js
 bean.onCollide("tree", () => {
@@ -221,34 +218,33 @@ bean.onCollide("tree", () => {
 });
 ```
 
-`.onCollide()` is a function provided by the `area()` component. It registers an
-event that runs every time the object collides with another object with a
-certain tag, passed by the first argument. In this case, it means every time
-Bean collides with another game obj with tag `"tree"`, run the callback.
+`.onCollide()` это функция предоставляемая компонентом `area()`. Она регистрирует
+событие, которое срабатывает каждый раз, когда объект сталкивается с другим объектом с
+определенным тегом, переданным в первом аргументе. В нашем случае, это значит, что каждый
+раз когда Bean сталкивается с другим game obj с тегом `"tree"`, выполняется коллбэк.
 
-Inside the callback we're doing 2 things. `addKaboom()` spawns an explosion
-animation, it accepts 1 argument the position to spawn, which we pass in the
-player's current position with `.pos` (which is provided by the `pos()`
-component).
+Внутри коллбэка мы выполняем две вещи. `addKaboom()` порождает анимацию взрыва, 
+она принимает 1 аргумент в отношении позиции, чтобы породиться, который мы передаем в
+текущую позицию игрока с `.pos` (который обеспечивается компонентом `pos()`).
 
-The second thing is `shake()`, which just shakes the screen,
+Вторая вещь это `shake()`, которая просто встряхивает экран,
 
 ![hit](intro/hit.gif)
 
-Here's a trick. Try pressing `F1` in the game. See all the blue outlines? This
-is inspect mode and it'll show all the bounding boxes of every game obj with
-`area()` component. Also try hovering over each game object to inspect its
-states like position and tags.
+Есть один трюк. Попробуйте нажать `F1` в игре. Видите белые линии? 
+Это режим инспекции и он покажет все ограничивающие рамки каждого game obj with
+`area()` component. Попробуйте навести курсор на любой game object чтобы инспектировать
+его статы такие как положение и теги.
 
 ![inspect](intro/inspect.png)
 
-Now it's time to add more trees. How can we keep them spawning constantly?
+Время добавить больше деревьев. Как мы можем постоянно их порождать?
 
-Let's try the `loop()` function, which performs an action every x seconds.
+Попробуйте функцию `loop()` , которая выполняет действие каждые x секунд.
 
 ```js
 loop(1, () => {
-    // add tree
+    // дерево
     add([
         rect(48, 64),
         area(),
@@ -262,27 +258,28 @@ loop(1, () => {
 });
 ```
 
-Let's just put the tree adding code inside a `loop()`. The first argument is the
-time in seconds here, so it'll spawn a tree every 1 seconds.
+Поместим код добавления деревьев в `loop()`. Первый аргумент это время в секундах,
+так у нас генерится три дерева каждую секунду.
 
-Sick! Lots of trees coming to you now. Now we already have most of the game
-mechanics done. Some improvements we can make:
+Это очень много деревьев. Теперь у нас уже есть большая часть игровой
+механики. Мы можем добавить пару улучшений:
 
-1. It might be better if trees all have different random heights. We can use
-   `rand()` to assign different value to the tree's rect height:
+1. Былобы неплохо чтобы у каждого дерева случайно отличалась высота. 
+Мы можем использовать `rand()` чтобы назначить различные значения 
+для высоты прямоугольника дерева:
 
 ```js
 rect(48, rand(24, 64)),
 ```
 
-2. It'll be more fun if the trees spawn at different intervals. We cannot do
-   that from `loop()`, but we can compose that with recursive `wait()`s, which
-   waits for x seconds to execute some code.
+2. Было бы веселее если бы деревья генерировались с разными интервалами.
+   Этого нельзя сделать с помощью `loop()`, но мы можем совместить его с
+   рекурсивным `wait()`, который ожидает x секунд перед выполнением кода.
 
 ```js
 function spawnTree() {
     add([
-        // the tree components
+        // компоненты дерева
     ]);
     wait(rand(0.5, 1.5), () => {
         spawnTree();
@@ -292,12 +289,12 @@ function spawnTree() {
 spawnTree();
 ```
 
-See? We're calling `spawnTree()` recursively / endlessly, with a random interval
-between 0.5 - 1.5 seconds each time.
+Видите? Мы вызываем `spawnTree()` рекурсивно / бесконечно, с рандомными интервалами
+от 0.5 до 1.5 секунд каждый раз.
 
-Before adding a score counter, let's actually complete the game loop first, by
-sending player to a game-over scene when they hit a tree. We can achieve this
-with KAPLAY's `scene()` system
+Прежде чем добавить счетчик очков, давайте сначала заполним цикл игры, отсылая игрока
+в game-over экран когда он попадает на дерево. Мы можем реализовать это с помощью
+Системы сцен KAPLAY `scene()`
 
 ```js
 scene("game", () => {
@@ -311,12 +308,12 @@ scene("lose", () => {
 go("game");
 ```
 
-Consider this example above, we're declaring 2 scenes here, "game" and "lose".
-The function we pass to `scene()` is the function to run when this scene is
-activated (by `go()`). In this case, we want to add a "bean" sprite on "game"
-scene, and want to add a "Game Over" text on the "lose" scene.
+Рассмотрим этот пример выше, мы объявляем две сцены, "game" и "lose".
+Функция которую мы передаем в `scene()` это ункция для запуска, когда эта сцена
+активируется (через `go()`). В этом случае, мы хоти добавить спрайт "bean"
+к сцене "game", и хотим добавить текст "Game Over" в сцену "lose".
 
-Let's first move everything game code we have into a scene.
+Сперва давайте поместим весь код игры в код сцены.
 
 ```js
 kaplay();
@@ -331,9 +328,10 @@ scene("game", () => {
 go("game");
 ```
 
-Try this, this shouldn't change any of your game's content.
+Попробуйте это, это не должно менять ничего из контента вашей игры.
 
-Then we can add a "lose" scene independent to your core game content here.
+Затем мы можем добавить сцену "lose" независимо от вашего основного
+игрового контента.
 
 ```js
 scene("lose", () => {
@@ -341,9 +339,9 @@ scene("lose", () => {
 });
 ```
 
-So in the "lose" scene, we'll add a piece of text in the center says "Game Over"
-(`text()` is a component that renders text). Go ahead and go to this scene when
-player collides with a tree:
+В сцене "lose", мы добавим кусок текста в центр, говорящего "Game Over"
+(`text()` это компонент который рендерит текст). Переходим на эту сцену, когда
+игрок сталкивается с деревом:
 
 ```js
 player.onCollide("tree", () => {
@@ -353,31 +351,31 @@ player.onCollide("tree", () => {
 });
 ```
 
-Ok! Now we've arrived at the final part of our game: score counter.
+Ok! Итак мы приближаемся к финальной части игры: счетчик очков.
 
 ```js
 let score = 0;
 const scoreLabel = add([text(score), pos(24, 24)]);
 ```
 
-Here we've declared a number variable to store the score, and added a game obj
-with `text()` component to display the text.
+Здесь мы объявляем числовую переменную для хранения очков, 
+и добавляем game obj с компонентом `text()` для отображения текста.
 
-Let's keep it simple and just use time as score.
+Будем проще и используем в качестве очков - время.
 
 ```js
-// increment score every frame
+// наращиваем очки каждый кадр
 onUpdate(() => {
     score++;
     scoreLabel.text = score;
 });
 ```
 
-We can use the `onUpdate()` function, which takes a function, and runs it every
-frame. In this case we're going to increment the score, and update the score
-label's text every frame.
+Для этого можно использовать функцию `onUpdate()`, которая принимает функцию,
+и выпоняет ее в каждом кадре. 
+В этом случае мы делаем приращение очков, и обновляем метку score label's text каждый кадр.
 
-Full game code here:
+Вот полный код игры:
 
 ```js
 const FLOOR_HEIGHT = 48;

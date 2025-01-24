@@ -1,10 +1,10 @@
 ---
-title: Introduction
-description: How to be a bean wizard.
+title: Введение
+description: Как стать мастером бобов.
 chapter: 1
 ---
 
-# How to be a Bean Wizard
+# Как стать мастером бобов
 
 <img src="/wizard.png" />
 

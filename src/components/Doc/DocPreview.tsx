@@ -32,14 +32,14 @@ export const DocPreview = component$(() => {
             <div class="modal-box absolute right-4 min-w-64 overflow-y-auto lg:h-96">
                 <div class="flex justify-end gap-2">
                     <a id="open-in-new" class="btn btn-ghost" target="_blank">
-                        Open in new tab
+                        Открыть в новой вкладке
                     </a>
                 </div>
 
                 <div id="modal-type" class="h-full"></div>
             </div>
             <form method="dialog" class="modal-backdrop">
-                <button class="cursor-default">close</button>
+                <button class="cursor-default">закрыть</button>
             </form>
         </dialog>
     );

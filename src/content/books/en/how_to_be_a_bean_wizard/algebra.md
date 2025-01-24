@@ -1,13 +1,13 @@
 ---
 title: Algebra
-description: Different aspects of algebra used in game development.
+description: Различные аспекты алгебры, используемые в разработке игр.
 chapter: 2
 ---
 
-# Scalars or numbers
+# Скаляры или числа
 
-The real numbers form an algebra. We can add, subtract, multiply and divide
-them. The addition and multiplication is left and right distributive
+Реальные числа образуют алгебру.Мы можем добавить, вычесть, умножить и разделить
+их.Добавление и умножение левое и правое распределение
 
 $$
 a * (b + c) = a * b + a * c
@@ -17,9 +17,9 @@ $$
 (b + c) * a = b * a + c * a
 $$
 
-Obviously the multiplication is compatible with scalars.
+Очевидно, что умножение совместимо со скалярами.
 
-Multiplication is also commutative.
+Умножение также коммутативно.
 
 $$
 a * b = b * a
@@ -28,15 +28,15 @@ $$
 Numbers have their negation $-a$ which gives zero when added, as well as their
 reciprocal $\frac{1}{a}$ which gives 1 when multiplied.
 
-## Powers
+## Возведение в степень
 
-Multiplication is a shorthand for addition
+Умножение является сокращением для сложения
 
 $$
 a + a + a = 3a
 $$
 
-Likewise powers are a shorthand for multiplication
+Аналогично возведение в степень являются сокращением для умножения
 
 $$
 a * a * a = a^3
@@ -55,14 +55,14 @@ $$
 a^{\frac{1}{2}} = \sqrt{2}
 $$
 
-# Vectors
+# Векторы
 
 Vectors take on many forms in games. We can find them for example as points,
 translations, forces or even rotations. A vector is something which can't be
 expressed using one number. For example a point in 2D needs 2 numbers, an x and
 an y value.
 
-## Addition
+## Сложение
 
 There are different ways to see a vector. We can use a 2D vector to identify a
 point in 2D space. For example the point (3, 2) can be seen as the absolute
@@ -193,10 +193,10 @@ chapter on calculus.
 
 To find a better way to rotate a vector we need to look at complex numbers.
 
-# Complex numbers
+# Комплексные числа
 
-Complex numbers in math classes are mostly seen as a way to take the square root
-of a negative number. This is possible because $i^2=-1$, thus for example
+Комплексные числа в классах математики в основном рассматриваются как способ взять квадратный корень
+отрицательного числа. This is possible because $i^2=-1$, thus for example
 $\sqrt{-4}=2i$. The letter $i$ stands for the imaginary number. For game
 developers complex numbers are much more valuable than that though.
 
@@ -389,10 +389,10 @@ $$
 length(u) = \sqrt{(u_x^2 + u_y^2)}
 $$
 
-## 2D Vectors do not form an algebra
+## 2D векторы не образуют алгебру
 
-Since 2D vectors do not have a product which is left and right distributive,
-they do not form an algebra. The complex numbers do, as they do have a product
+Поскольку векторы 2D не имеют произведения, которое является левой и правой дистрибутивой,
+Они не образуют алгебру. The complex numbers do, as they do have a product
 which is not only bilinear (left and right distributive) but even both
 commutative and associative. So the complex numbers form an algebra. 3D vectors
 have a cross product which is left and right distributive and they form an
@@ -400,10 +400,10 @@ algebra. Their cross product is neither associative nor commutative though. If
 we look at quaternions, the equivalent of complex numbers used in 3D, their
 Hamilton product is bilinear and associative.
 
-# Polynomials
+# Полиномы
 
-Polynomials are expressions containing a variable and using only operators +=*/
-and exponentiation with positive integer exponents. For example
+Полиномы - это выражения, содержащие переменную и используют только операторы +=*/
+и экспонент с положительными целыми показателями. For example
 
 $$
 2x + 4
@@ -413,7 +413,7 @@ $$
 x^2 + 4x + 2
 $$
 
-Polynomials form an algebra, with polynomial multiplication.
+Полиномы образуют алгебру с многочленным умножением.
 
 ## The line and linear interpolation
 
@@ -511,10 +511,10 @@ but graphics people are still in the dark.
 
 # Matrices
 
-A matrix can be seen as a vector of vectors (though more dimensions, thus deeper
-nesting, is possible). The size or shape of a matrix depends on what we are
-using it for. In 2D games, the place where you might encounter it most
-frequently is transformations. Now you might ask, "why use a matrix?", as you
+Матрица можно рассматривать как вектор векторов (though more dimensions, thus deeper
+nesting, is possible). Размер или форма матрицы зависит от того, для чего мы их используем.
+В 2D играх, место, где вы можете встретить матрицы больше всего это преобразования. 
+Now you might ask, "why use a matrix?", as you
 can already translate, rotate and scale vectors now. The reason is mostly
 composition and inverting transformations. It is easy to compose two
 translations, by just adding them. But what if you add a rotation? How do you

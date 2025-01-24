@@ -1,39 +1,39 @@
 ---
 title: Game Objects
 description:
-    How to create and manipulate game objects in KAPLAY, the HTML5 Game Engine
-    for JavaScript and TypeScript.
+    Как создавать и манипулировать игровыми объектами в KAPLAY, HTML5 Game Engine
+    для JavaScript и TypeScript.
 url: game_objects
 image: "./assets/tree.png"
 ---
 
 # Game Objects
 
-Game objects are the entity unit of KAPLAY. They are the actors of your game,
-the entities that move, interact, and make the game interesting.
+Game objects это единица сущности KAPLAY. Они актеры вашей игры,
+сущности, которые движутся, взаимодействуют и делают игру интересной.
 
-## Creating Game Objects
+## Создание игровых объектов
 
-We create game objects with the `add()` function. It creates the object and
-attach it to the scene. It receives **components** and **tags**.
+Игровые объекты создают с помощью функции `add()`. Она создает объект
+и присоединяет его к сцене. Она принимает **components** и **tags**.
 
 ```js
 const dinosaur = add([
-    // while components gives different behaviours to the game obj
+    // если компоненты дают различное поведение игровым объектам
     rect(32, 32), // draw a rect
     pos(80, 80), // set a position
-    // tags classify the game object
+    // теги - tags классифицируют игровые объекты
     "dangerous",
     "big",
 ]);
 ```
 
-We will see in deep components and tags in their respective guides.
+Мы рассмотрим глубже компоненты и ​​теги в их соответствующих руководствах.
 
-## Parents, childs and root
+## Parents, childs и root
 
-A game object can have child game objects. This will give to the children the
-possibility of follow parent's position, rotation and scale.
+Игровые объекты могут иметь потомков - game objects. Это дает детям
+возможность следовать за позицией родителя, вращением и масштабированием.
 
 ```js
 const player = add([
@@ -43,20 +43,20 @@ const player = add([
 
 const head = player.add([
     circle(16),
-    pos(0, -16), // relative to player position
+    pos(0, -16), // относительно положения player
 ]);
 ```
 
-**Every game object** is a child of the **root game object**. The root game
-object is the game object that contains all the game objects in the scene.
+**Every game object** это потомок **root game object**. Корневой root game
+object это game object который содержит все game objects в сцене.
 
 ![Game Object tree](./assets/tree.png)
 
-That's why the `add()` function is, in fact, a `GameObjRaw.add()` method.
+Вот почему функция `add()` это де-факто, метод `GameObjRaw.add()`.
 
-## Game Objects operations
+## Операции с Game Objects
 
-### How to create a game object
+### Как создать game object
 
 ```js
 const bag = add([
@@ -64,27 +64,27 @@ const bag = add([
 ]);
 ```
 
-### How to remove a game object
+### Как удалить game object
 
 ```js
-// you can use .destroy() method or the destroy() function
+// можно использовать метод .destroy() или функцию destroy()
 bag.destroy();
 destroy(bag);
 ```
 
-### How to get all game objects
+### Как получить все game objects
 
 ```js
-// get a list with all game objects
+// получаем список всех game objects
 get("*");
-// get a list of friends objects
+// получаем список всех игровых объектов friends
 get("friends");
 ```
 
-### How to add a child
+### Как добавить ребенка
 
 ```js
-// It adds a mini-bag to bag
+// добавляем потомка mini-bag к bag
 const miniBag = bag.add([
     sprite("minibag"),
 ]);
@@ -95,45 +95,44 @@ const superMiniBag = bag.add([
 ]);
 ```
 
-### How to remove a child
+### Как удалить потомка
 
 ```js
-// We pass the game object reference
+// Мы передаем ссылку на game object
 bag.remove(miniBag); // 18, independency
 ```
 
-### How to get childs
+### Как получить потомков
 
 ```js
-bag.get("*"); // all children
-bag.get("favorite"); // [superMiniBag] - all children with tag favorite
+bag.get("*"); // все потомки
+bag.get("favorite"); // [superMiniBag] - все потомки с тегом фаворит
 ```
 
-You can see the full list of operations in the [`GameObjRaw`](/doc/GameObjRaw)
-documentation.
+Вы можете увидеть полный список операций в документации [`GameObjRaw`](/doc/GameObjRaw).
 
-## The `make()` function
+## Функция `make()`
 
-`make()` is used for creating a game object without adding it to the scene.
+`make()` используется для создания game object без добавления его к сцене.
 
 ```js
-// Same syntax as add()
+// Такой же синтаксис как у add()
 const bean = make([
     sprite("bean"),
     rotate(0),
 ]);
 
-// No bean appears, but we can modify it
+// bean не появляется, но вы можете его изменить
 bean.angle = 270;
 
-// Now make bean appears!
+// Теперь сделаем так чтобы bean появился!
 add(bean); // ohhi
 ```
 
-## Creating game object dynamically
+## Динамическое создание game object
 
-One way for create a game object is create a function that returns a list of
-components:
+Одним из способов создания игрового объекта является создание функции,
+которая возвращает список компонентов:
 
 ```js
 function createBullet() {
@@ -147,7 +146,7 @@ function createBullet() {
 const bullet1 = add(createBullet());
 ```
 
-Another option is return an object with `make()`, and then add it.
+Другой вариант - вернуть объект функцией `make()`, и затем добавить его.
 
 ```js
 function createBullet(spr) {
@@ -156,7 +155,7 @@ function createBullet(spr) {
         color(0.5, 0.5, 1),
     ]);
 
-    // we use a sprite if passed, if not a rect
+    // мы используем спрайт, если он передан, и прямоугольник, если нет
     if (spr) {
         obj.use(sprite(spr));
     }
@@ -164,7 +163,7 @@ function createBullet(spr) {
         obj.use(rect(6, 18));
     }
 
-    return obj; // IMPORTANT: return the object reference
+    return obj; // IMPORTANT: возвращайте ссылку на объект!
 }
 
 const bullet2 = add(createBullet("bullet")); // sprite

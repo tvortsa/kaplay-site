@@ -1,20 +1,20 @@
 ---
-title: Why KAPLAY?
+title: Почему KAPLAY?
 description:
-    Learn why to use KAPLAY compared to other JavaScript game libraries like
-    Phaser, Cocos2d, and others.
+    Узнайте, почему использовать Kaplay по сравнению с другими библиотеками JavaScript, например
+    Phaser, Cocos2d и другие.
 url: why
 ---
 
 # Why KAPLAY?
 
-Maybe one of the first questions you got when you found **KAPLAY** was: _"Why
-should I use KAPLAY instead of X library?"_.
+Может быть, один из первых вопросов, которые вы получили, когда нашли **KAPLAY** был: _"Почему
+стоит использовать Kaplay вместо библиотеки X?"_.
 
-There's some reasons why you should use KAPLAY:
+Есть некоторые причины, почему вы должны использовать KAPLAY:
 
-- 🧪 **Simplicity**: KAPLAY design and API looks for the simplicity to create
-  games. You can create a game with a few lines of code.
+- 🧪 **Simplicity**: KAPLAY Дизайн и API ищут простоту для создания
+игры Вы можете создать игру в несколько строк кода.
 - 📏 **Flexibility**: KAPLAY is a **library**, not a framework or game engine.
   You can use KAPLAY with other libraries or frameworks, do you want to use
   _React_? _Vue_? No problem, you can use it with KAPLAY.
@@ -24,14 +24,14 @@ There's some reasons why you should use KAPLAY:
 
 # FAQ
 
-## What's the difference between KAPLAY.js and Kaboom.js?
+## В чем разница между kaplay.js и kaboom.js?
 
-On the old days, the KAPLAY Team was working as contributors on the Kaboom.js
-project. But one day, the project was abandoned and the KAPLAY Team decided to
-fork the project and continue the development. KAPLAY has more than **600**
-commits after the fork and a lot of new features.
+В прежние времена команда Kaplay работала в качестве участников проекта Kaboom.js.
+Но однажды проект был заброшен, и команда kaplay решила
+произвести проект и продолжить разработку. Kaplay имеет больше ** 600 **
+коммитов после форка из kaboom.js и много новых функций.
 
-## Is KAPLAY a game engine?
+## Является ли KAPLAY игровым движком?
 
-No, KAPLAY is a game library. KAPLAY is a set of tools and utilities to help you
-create games with JavaScript and TypeScript.
+Нет, KAPLAY это игровая библиотека. KAPLAY это нвбор инструментов и утилит 
+помогающих вам создавать игры на JavaScript и TypeScript.

@@ -1,50 +1,51 @@
 ---
-title: Calculus
-description: Different aspects of calculus used in game development.
+title: Исчисление
+description: Различные аспекты исчисления, используемых в разработке игры.
 chapter: 3
 ---
 
-# Derivatives and differentiation
+# Производные и дифференциация
 
-## Introduction
+## Введение
 
-Derivatives are used extensively in games, even though many people don't realize
-that. When you are calculating the difference between this and last position,
-because you want to align an object along the path it follows, you are actually
-trying to calculate the derivative at the current position (Note that if you use
-physics with an integrator, you can just use the velocity. We are talking about
-the case where an analytical function is used instead).
+Производные широко используются в играх, хотя многие не осознают это.
+Когда вы рассчитываете разницу между этой и последней позицией,
+Потому что вы хотите выравнивать объект по пути, который он следует, вы на самом деле
+пытаетесь рассчитать производную в текущей позиции (Обратите внимание, что если вы используете
+физику с интегратором, вы можете просто использовать скорость. Мы говорим о
+случаях, когда вместо этого используется аналитическая функция).
 
 $$
 f'(t) = \frac{f(t + dt) - f(t)}{dt}
 $$
 
-The problem is that calculating the direction this way will depend a lot on the
-elapsed time. If dt is too large, you might be off a by a lot, and if dt is too
-small, your vector may become undefined.
+Проблема в том, что расчет направления в этом пути будет сильно зависеть от
+прошедшего времени. Если DT слишком большой, вы можете быть отключены на многое, 
+а если DT очень маленький, ваш вектор может стать неопределенным.
 
-A better way is to calculate the derivative of the function you use to decide
-the trajectory. See for example the following ballistics function:
+Лучшим способом является вычисление производной функции, которую вы используете, 
+чтобы вычислить траекторию.
+Смотрите, например, следующую баллистическую функцию:
 
 $$
 f(t) = p_0 + v_0 * t + \frac{g * t^2}{2}
 $$
 
-This function calculates the position of a projectile given the initial position
-$p_0$, the initial velocity $v_0$ and the gravity vector, which is most likely
-zero in the x dimension, e.g. $(0, g)$. So how do we get the direction of the
-trajectory at a time t? By calculating the velocity, which is the derivative of
-the position.
+Эта функция вычисляет положение снаряда, учитывая начальную позицию
+$p_0$, начальную скорость $v_0$ и гравитационный вектор, который, скорее всего,
+ноль по оси X, e.g. $(0, g)$. Так как же получить направление
+траектории за раз т? Расчет скорости, которая является производной
+позиция.
 
 $$
 f'(t) = v_0 + g * t
 $$
 
-This function will give us the velocity vector at each time t. If we take the
-angle of this vector, we can rotate our sprite in order to align it with the
-followed trajectory.
+Эта функция даст нам вектор скорости в каждый раз t.Если мы возьмем
+угол этого вектора, мы можем повернуть наш спрайт, чтобы выровнять его с
+следовал траектории.
 
-## Local minimum, maximum and inflection points
+## Локальные минимумы, максимумы и точки перегиба (inflection points)
 
 What if we want to know how high our projectile will go? Let's say we have an
 enemy in a cave system throwing stones. These stones follow the same kind of
