@@ -1,46 +1,47 @@
 ---
 title: Events
 description:
-    Learn how to manage events in KAPLAY, the HTML5 Game Engine for JavaScript
+    Узнайте как управлять событиями в KAPLAY, the HTML5 Game Engine for JavaScript
     and TypeScript.
 url: events
 ---
 
 import Info from "@/components/Content/Info.astro";
 
-# Events
+# События
 
-An **Event** is something that _happens_ in the game, for example, the player
-pressing a key, clicking the mouse or an enemy being hurt.
+**Event** это что-то что _происходит_ в игре, например, игрок
+нажимает клавишу, кликает мышью или враг, получает урон.
 
-An **Event Handler** is a method that listens for events and run code when they
-happen. These functions are named as `on{EventName}`.
+**Event Handler** это метод, который слушает события и запускает
+некоторый код когда они случаются. 
+Эти функции называются `on{EventName}`.
 
 ```js
-// onKeyPress() will run every time user press any key
+// onKeyPress() будет срабатывать каждый раз, когда пользователь нажимает любую клавишу
 onKeyPress((key) => {
-    // Some events send you args related to them, in this case the key pressed
+    // Некоторые события отправляют вам аргументы, связанные с ними, в данном случае нажатая клавиша
     debug.log(key); // will log the key pressed
 });
 ```
 
-**Event Handlers** also return an **Event Controller**. It works for cancel the
-event or pause it:
+**Event Handlers** также возвращает **Event Controller**. Он работает для отмены
+события или сделай паузы:
 
 ```js
 const pressEvent = onKeyPress((key) => {
     debug.log(key);
 });
 
-pressEvent.cancel(); // stop running the handler
+pressEvent.cancel(); // остановить обработчик
 ```
 
-There's many type of events that runs in different contexts:
+Есть много событий, которые работают в разных контекстах:
 
-### App events
+### События приложения
 
-**App events** run without neccesity of being attached to a game object. They
-are related to things like the game screen, input, etc.
+**App events** работают без необходимости быть прикрепленным к game object. Они
+связаны с такими вещами, как game screen, input, etc.
 
 ```js
 // Only runs when user press "a"
@@ -48,27 +49,28 @@ onKeyPress("a", () => {
     debug.log("aaa");
 });
 
-// Only runs when assets finish loading
+// Запускается только когда загрузка активов заверщается
 onLoad(() => {});
 ```
 
-<Info crew="bobo" title="App events are also in objects">
-There's some events like `onKeyPress()` which also have a `obj.onKeyPress()` version. They are still App events but they got removed when the object is destroyed. See the [App Events list](/#app-events-list) below
+<Info crew="bobo" title="События приложения также в объектах">
+Есть некоторые события, как `onKeyPress()` которые также имеют `obj.onKeyPress()` вариант. 
+Они все еще являются событиями приложения, но они были удалены, когда объект был уничтожен.
+См. [App Events list](/#app-events-list) ниже
 </Info>
 
 ### Root events
 
-**Root events** run during the lifecycle of the **Root Game Object**, or the
-same, forever.
+**Root events** запускаются в жизненном цикле **Root Game Object**, иными словами - навсегда.
 
 ```js
-// onUpdate() event runs every frame.
+// onUpdate() событие запускается каждый кадр.
 onUpdate(() => {
     // Bean moves 10px to the right every frame
     bean.moveBy(10, 0);
 });
 
-// onDraw() event runs after update and must be used with drawXXXX functions.
+// onDraw() событие запускается после update и должно использоваться с функциями drawXXXX.
 onDraw(() => {
     // The sprite is drawn here to prevent it from disappearing after 1 frame.
     drawSprite("bean");
@@ -202,7 +204,7 @@ obj.trigger("hi"); // :>
 
 ### Object Events List
 
-| Event                    | Comp                               | Description                                   | Global Handler                                    | Object Handler                                                                     |
+| Событие                  | Comp                               | Описание                                      | Global Handler                                    | Object Handler                                                                     |
 | ------------------------ | ---------------------------------- | --------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `update`                 | None                               | Runs every frame                              | [`onUpdate()`](/doc/ctx/onUpdate)                 | [`obj.onUpdate()`](/doc/GameObjRaw/#GameObjRaw-onUpdate)                           |
 | `draw`                   | None                               | Runs every frame after update                 | [`onDraw()`](/doc/ctx/onDraw])                    | [`obj.onDraw()`](/doc/GameObjRaw/#GameObjRaw-onDraw)                               |
@@ -241,7 +243,7 @@ obj.trigger("hi"); // :>
 | `animateFinished`        | [`animate`](doc/ctx/animate)       | Runs when animation finishes                  | Using `on()`                                      | [`obj.onAnimateFinished()`](/doc/AnimateComp/#AnimateComp-onAnimateFinished)       |
 | `spatialMapChanged`      | [`level()`](doc/ctx/level)         | Runs when spatial map changes                 | Using `on()`                                      | [`obj.onSpatialMapChanged()`](/doc/LevelComp/#LevelComp-onSpatialMapChanged)       |
 | `navigationMapInvalid`   | [`level()`](doc/ctx/level)         | Runs when navigation map becomes invalid      | Using `on()`                                      | [`obj.onNavigationMapInvalid()`](/doc/LevelComp/#LevelComp-onNavigationMapInvalid) |
-| `avigationMapChanged`    | [`level()`](doc/ctx/level)         | Runs when navigation map changes              | Using `on()`                                      | [`obj.onNavigationMapChanged()`](/doc/LevelComp/#LevelComp-onNavigationMapChanged) |
+| `navigationMapChanged`    | [`level()`](doc/ctx/level)         | Runs when navigation map changes              | Using `on()`                                      | [`obj.onNavigationMapChanged()`](/doc/LevelComp/#LevelComp-onNavigationMapChanged) |
 
 ### App Events List
 

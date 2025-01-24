@@ -1,19 +1,19 @@
 ---
 title: Tags
-description: Learn how to add, remove and query for tags in KAPLAY.js
+description: Узнайте, как добавить, удалить и запросить теги в KAPLAY.js
 url: tags
 ---
 
 import Info from "@/components/Content/Info.astro";
 
-# Tags
+# Теги
 
-Tags are names, labels or keywords that group game objects, such as enemies,
-friends, trees, etc. They are useful for classifying different types of objects.
+Теги - это имена, метки или ключевые слова, которые группируют игровые объекты, такие как враги,
+Друзья, деревья и т. Д. Они полезны для классификации различных типов объектов.
 
-## Using tags
+## Использование тегов
 
-Tags can be added on the `add([])` function array as a string.
+Теги могут быть добавлены в массив функции `add([])` как строка.
 
 ```js
 const ghost = add([
@@ -22,71 +22,72 @@ const ghost = add([
 ]);
 ```
 
-This make ghosty to have a tag enemy, and there's much operations you can do
-with it.
+Это делает Ghosty, имеющим тег врага, и есть много операций, которые вы можете сделать
+с этим.
 
-## Tags operations
+## Операции с тегами
 
-### How to add a tag
+### Как добавить тег
 
 ```js
-// Add a tag on creation
+// При создании объекта
 const ghosty = add([
     sprite("ghosty"),
     "enemy";
 ]);
 
-// Add 1 tag or many tags!
-ghosty.tag("friend"); // now is a friend :D
+// Добавляйте 1 или много тегов!
+ghosty.tag("friend"); // теперь друг :D
 ghosty.tag(["friend", "invisible"]); // invisible forever
 ```
 
-### How to remove a tag
+### Как удалить тег?
 
 ```js
 ghosty.untag("friend"); // D:
 ```
 
-### How to know if a tag exists in a game object
+### Как узнать есть ли какойто тег в этом game object ?
 
 ```js
-ghosty.is("enemy"); // true if tag is there, otherwise false
+ghosty.is("enemy"); // true если tag есть и false если нет
 ```
 
-### How to get a list of all tags
+### Список всех тегов
 
 ```js
-ghosty.tags; // readonly array with all tags.
+ghosty.tags; // массив всех тегов, только для чтения.
 // result: ["enemy"]
 ```
 
 <Info crew="gun" title="Important!">
-Don't try to push or modify this array. Is only for read purposes. If you want to add or remove a tag, use `.tag()` and `.untag()` instead.
+Не пытайтесь push или modify этот массив. Он только для чтения. 
+Если вы хотите добавить или удалить тег, используйте `.tag()` или `.untag()`.
 </Info>
 
-## Using tags in events and methods
+## Использование тегов в событиях и методах
 
-A big quantity of methods and functions works using tags.
+Многие функции и методы поддерживают работу с тегами.
 
 ```js
-obj.get("enemy"); // returns an array with all enemy game objects
+obj.get("enemy"); // возвращает массив со всеми enemy game objects
 ```
 
-## Special tag: *
+## Особый тег: *
 
-All game objects have the `*` tag by default. This can be useful for example to
-get all game objects
+Все игровые объекты имеют тег `*` по умолчанию. Это может быть полезно, например, для
+получения всех игровых объектов
 
 ```js
-get("*"); // list of all game objects
+get("*"); // список всех game objects
 ```
 
-## Components as tags
+## Компоненты как теги
 
-In v3001, KAPLAY by default will take component id's as tags:
+В v3001, KAPLAY по умолчанию будет принимать component id как тег:
 
 ```js
-// this means if your object have a sprite() component, it also have a "sprite" tag
+// Это значит, что если у вашего объекта есть компонент sprite(), то также будет и тег "sprite"
 const tga = add([
     sprite("tga"),
 ]);
@@ -94,8 +95,8 @@ const tga = add([
 tga.is("sprite"); // true
 ```
 
-In next versions this is disabled by default, but if you want to enable it or
-disable it in v3001 version, you can use the `tagsAsComponents` option:
+В следующих версиях это отключено по умолчанию, но если вы хотите включить это или
+отключить в версии v3001, вы можете использовать опцию `tagsAsComponents`:
 
 ```js
 kaplay({

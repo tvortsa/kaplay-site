@@ -59,7 +59,7 @@ obj.tween(vec2(50, 50), vec2(100, 50), 5, (value) => (obj.pos = value));
 
 # Animate
 
-Animate is the newer animation function. It has more functionality, yet is more
+Animate - более новая анимационная функция. It has more functionality, yet is more
 lightweight since you can animate more than one property, and you don't need to
 chain if you need more than two interpolation values. Animate works with
 keyframes. A simple animation of one property similar to the tween above would

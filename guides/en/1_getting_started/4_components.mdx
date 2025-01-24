@@ -1,22 +1,21 @@
 ---
 title: Components
 description:
-    Learn how to create and use components in KAPLAY, the HTML5 Game Engine for
+    Узнайте как создавать и использовать компоненты в KAPLAY, the HTML5 Game Engine for
     JavaScript and TypeScript.
 url: components
 ---
 
 import Info from "@/components/Content/Info.astro";
 
-# Components
+# Компоненты
 
-A component is a piece of code that defines a specific behavior of a game
-object. It returns a set of **properties** and **methods** that are attached to
-the game object.
+Компоненты это участки кода которые задают специфику поведения game object. 
+Они возвращают набор **properties** и **methods** присоединенных к объекту.
 
-## Using a component
+## Используем компонент
 
-For use components we have to attach them in the `add()` function.
+Для использования компонента мы можем передать его в функцию  `add()`.
 
 ```js
 const player = add([
@@ -32,59 +31,59 @@ player.move(100, 0); // moves the player 100px to the right
 debug.log(player.height); // will log 60
 ```
 
-There are a lot of useful components in KAPLAY like:
+Есть множество готовых компонентов в KAPLAY:
 
-- [`sprite()`](/doc/ctx/sprite) to make the object draw an image, and play
-  animations
-- [`area()`](/doc/ctx/area) to make the object do collision detection, with
-  methods like [`onCollide()`](/doc/AreaComp#AreaComp-onCollide)
-- [`text()`](/doc/ctx/text) to make the object draw text
-- [`scale()`](/doc/ctx/scale) to make the game object bigger or smaller or to
-  stretch it
+- [`sprite()`](/doc/ctx/sprite) чтобы объект рисовал изображение и воспроизводил
+анимации.
+- [`area()`](/doc/ctx/area) чтобы объект выполнял обнаружение столкновений, 
+методом типа [`onCollide()`](/doc/AreaComp#AreaComp-onCollide)
+- [`text()`](/doc/ctx/text)чЧтобы объект рисовал текст
+- [`scale()`](/doc/ctx/scale) сделать игровой объект больше или меньше или 
+растянуть его
 
-You can see all the components in the [API Reference](/doc/ctx/pos).
+Вы можете увидеть все компоненты в [API Reference](/doc/ctx/pos).
 
-## Components operations
+## Операции с компонентами
 
-All components have an _id_, this is the **name** of the component, `sprite()`'s
-id is `"sprite"`. This is used in many operations.
+У всех компонентов есть _id_, это **name** компонента, id `sprite()`
+будет `"sprite"`. Это используется во многих операциях.
 
-### How to add components
+### Как добавлять компоненты
 
 ```js
 loadSprite("bean", "sprites/bean.png");
 
-// Add the component on creation
+// Добавить компонент при создании
 const bean = add([
     sprite("bean"), // bean the frog :D
     opacity(0.6), // a ghost bean???
 ]);
 
-// Add the component after creation
+// добавить компонент после создания
 bean.use(color("#ff00ff")); // green bean <:
 ```
 
-### How to remove components
+### Как удалить компонент ?
 
 ```js
-// We pass the component id for remove it.
+// Мы передаем id компонента для его удаления.
 bean.unuse("sprite"); // bye bean
 ```
 
-### How to know if a game object have a component
+### Как узнать есть ли такой компонент у объекта?
 
 ```js
-// We pass the component id:
-bean.has("sprite"); // false - true if comp is there, otherwise false
+// Передачей id компонента:
+bean.has("sprite"); // false - true если компонент есть, иначе false
 ```
 
 <Info crew="gun" title="Important!">
-Do note that you can't pass the component itself to `.unuse()` / `.has()`,
-you have to pass the component _name_!
+Обратите внимание, что вы не можете передать сам компонент `.unuse()` / `.has()`,
+вы можете передать только component _name_!
 </Info>
 
-## Making your own components
+## Создание собственных компонентов
 
-If you are creating a larger game, it's probably a good idea to bundle some of
-your game's functionality into custom components. You can check out how to do
-that in [this guide](/guides/custom_components/).
+Если вы создаете большую игру, возможно хорошей идеей будет создать какую-то
+собственную функциональность в кастомных компонентах. 
+Вы можете узнать о том как это сделать в [этом руководстве](/guides/custom_components/).
